@@ -142,7 +142,7 @@ CORS_ORIGIN_WHITELIST = [
      'http://localhost:3000'
 ]
 
-# django_heroku.settings(locals())
+
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
@@ -151,3 +151,6 @@ REST_FRAMEWORK = {
         'knox.auth.TokenAuthentication',
     ]
 }
+
+
+django_heroku.settings(locals())
