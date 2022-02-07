@@ -1,0 +1,24 @@
+{
+    "user_name": "guy",
+    "email": "guest@example.com",
+    "password": "1234",
+    "account_type": 1
+}
+
+{
+    "name": "test comp",
+    "description": "test desc",
+    "units": "test units",
+    "frequency": 1,
+    "type_of_competition": 1,
+    "end_date": "2022-02-01",
+    "host_id": 1,
+    "completed": "False"
+}
+
+{
+    "user_id": 1,
+    "competition_id": 1,
+    "score": 0,
+    "last_updated": "2022-02-01"
+}

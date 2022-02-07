@@ -1,16 +1,17 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
-class User(models.Model):
-    id = models.AutoField(primary_key=True)
-    user_name = models.CharField(max_length=120,unique = True)
-    email = models.EmailField(unique = True, null = False)
-    password = models.CharField(max_length=100, null = False)
-    account_type = models.IntegerField()
+# class User(models.Model):
+#     id = models.AutoField(primary_key=True)
+#     user_name = models.CharField(max_length=120,unique = True)
+#     email = models.EmailField(unique = True, null = False)
+#     password = models.CharField(max_length=100, null = False)
+#     account_type = models.IntegerField()
 
-    def __str__(self):
-        return f'{self.user_name}, {self.email}, {self.password}, {self.account_type}'
+#     def __str__(self):
+#         return f'{self.user_name}, {self.email}, {self.password}, {self.account_type}'
 
 
 class Competition(models.Model):
@@ -30,10 +31,13 @@ class Competition(models.Model):
 
 class Score(models.Model):
     id = models.AutoField(primary_key=True)
-    competition_id = models.ForeignKey(Competition, on_delete=models.CASCADE)
-    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    competition_id = models.ForeignKey(Competition, on_delete=models.CASCADE, related_name="scores")
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE, related_name="scores_user")
     score = models.IntegerField()
     last_updated = models.DateField()
 
-    def __str__(self):
-        return f'{self.competition_id}, {self.user_id}, {self.score}'
+    class Meta:
+        ordering = ['score']
+
+    def __unicode__(self):
+        return '%s' %(self.score)

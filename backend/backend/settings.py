@@ -35,13 +35,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['https://test-django-34.herokuapp.com/','127.0.0.1']
+ALLOWED_HOSTS = ['https://test-django-34.herokuapp.com/','127.0.0.1', 'localhost']
 
 
 # Application definition
 
 INSTALLED_APPS = [
     'api',
+    'users',
     'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -49,7 +50,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework'
+    'rest_framework',
+    'knox'
 ]
 
 MIDDLEWARE = [
@@ -140,4 +142,12 @@ CORS_ORIGIN_WHITELIST = [
      'http://localhost:3000'
 ]
 
-django_heroku.settings(locals())
+# django_heroku.settings(locals())
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        # 'rest_framework.authentication.BasicAuthentication',
+        # 'rest_framework.authentication.SessionAuthentication',
+        'knox.auth.TokenAuthentication',
+    ]
+}
