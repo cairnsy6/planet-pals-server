@@ -39,3 +39,16 @@ class LeaderboardSerializer(serializers.ModelSerializer):
         model = Competition
         fields = ('id', 'name', 'description', 'units', 'frequency','type_of_competition', 'end_date', 'host_id', 'completed', 'scores') 
 
+class UserCompsSerializer(serializers.ModelSerializer):
+    score = serializers.SerializerMethodField(method_name='get_score')
+
+    def get_score(self, obj):
+        print(self.context.get('user_id'))
+        qset = Score.objects.filter(competition_id = obj.id, user_id = self.context.get('user_id'))
+        print(qset)
+        return ScoreSerializer(qset[0], required=False).data
+    
+    class Meta:
+        model = Competition
+        fields = ('id', 'name', 'description', 'units', 'frequency','type_of_competition', 'end_date', 'host_id', 'completed', 'score') 
+

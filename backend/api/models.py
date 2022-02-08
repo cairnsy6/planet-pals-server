@@ -37,7 +37,7 @@ class Score(models.Model):
     last_updated = models.DateField()
 
     class Meta:
-        ordering = ['score']
+        unique_together = ['competition_id', 'user_id']
 
     def __unicode__(self):
         return '%s' %(self.score)

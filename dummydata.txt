@@ -1,8 +1,7 @@
 {
     "user_name": "guy",
     "email": "guest@example.com",
-    "password": "1234",
-    "account_type": 1
+    "password": "1234"
 }
 
 {
